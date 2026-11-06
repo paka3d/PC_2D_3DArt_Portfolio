@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pascal Chaumette — 3D Artist · Unity Developer · 2D Artist</title>
+  <meta name="description" content="Portfolio of Pascal Chaumette — Blender 3D generalist, Unity developer and 2D artist. Concept art, hard-surface, environments, characters, HD product rendering, AR/VR and released game work for Disney and more." />
+  <meta name="theme-color" content="#0b0e14" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0e14'/%3E%3Cpath d='M20 48V16h14a12 12 0 0 1 0 24h-10' fill='none' stroke='%23ff7a2f' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" /> <!-- ?v= busts stale browser cache; bump on visual changes -->
+</head>
+<body>
+
+  <div class="bg-fx" aria-hidden="true"></div>
+
+  <!-- ======================= NAV ======================= -->
+  <header class="nav" id="top">
+    <a class="nav-brand" href="#home" aria-label="Home">
+      <span class="brand-mark">PC</span>
+      <span class="brand-text">Pascal&nbsp;Chaumette</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#motion">Motion</a>
+      <a href="#experience">Experience</a>
+      <a href="#toolbox">Toolbox</a>
+      <a href="#assets">Assets</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ======================= HERO ======================= -->
+    <section class="hero" id="home">
+      <canvas id="hero3d" class="hero-canvas" aria-label="Interactive 3D creature — drag to rotate, tap to cycle animations"></canvas>
+      <div class="hero-vignette" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="kicker reveal"><span class="kicker-dot"></span>2D|3D Artist & Creative Technologist · Whitby, Canada</p>
+        <h1 class="reveal">PASCAL<br /><span>CHAUMETTE</span></h1>
+        <p class="role reveal">Creative Digital Artist and Technologist | 3D Generalist</p>
+        <p class="lede reveal">
+          A decade-plus of real-time and cinematic 3D — AR/VR, AA mobile games, WebGL/ThreeJS,
+          interactive installations, HD product rendering and marketing content. Work delivered for
+          <strong>Disney</strong>, <strong>Neo-Pangea</strong>, <strong>The Armoured Pug</strong> and
+          <strong>RHODDY</strong>, with contributions to released games like
+          <em>Star Wars: Resistance Racer</em> and <em>VR Regatta</em>.
+        </p>
+        <div class="hero-cta reveal">
+          <a href="#work" class="btn btn-primary">View the Work</a>
+          <a href="#motion" class="btn btn-ghost">Watch Showreels</a>
+          <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+        </div>
+        <div class="hero-hint reveal">
+          <span class="hint-ico" aria-hidden="true">&#10530;</span>
+          Drag to rotate the creature&ensp;·&ensp;tap it to cycle through animations
+        </div>
+      </div>
+
+      <div class="anim-chip" id="animChip" hidden>
+        <span class="anim-chip-label">ANIMATION</span>
+        <span class="anim-chip-name" id="animName">—</span>
+        <span class="anim-chip-hint">tap model to switch</span>
+      </div>
+
+      <div class="hero-loader" id="heroLoader">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Summoning the creature…</p>
+      </div>
+      <div class="hero-error" id="heroError" hidden>
+        <p><strong>The 3D creature couldn’t load.</strong><br />
+        Open the site through <code>start-site.bat</code> (local server) for full 3D, or check your connection.</p>
+      </div>
+
+      <a class="scroll-cue" href="#about" aria-label="Scroll to about">
+        <span class="scroll-cue-mouse"><span class="scroll-cue-wheel"></span></span>
+        <span class="scroll-cue-text">scroll</span>
+      </a>
+    </section>
+
+    <!-- ======================= MARQUEE ======================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>3D Modeling</span><i>◆</i><span>Hard Surface</span><i>◆</i><span>Texturing</span><i>◆</i>
+        <span>Concept Art</span><i>◆</i><span>Unity · C#</span><i>◆</i><span>AR / VR</span><i>◆</i>
+        <span>WebGL · ThreeJS</span><i>◆</i><span>HD Product Rendering</span><i>◆</i><span>Animation</span><i>◆</i>
+        <span>Procedural</span><i>◆</i><span>3D Printing</span><i>◆</i>
+        <span class="dup">3D Modeling</span><i>◆</i><span class="dup">Hard Surface</span><i>◆</i><span class="dup">Texturing</span><i>◆</i>
+        <span class="dup">Concept Art</span><i>◆</i><span class="dup">Unity · C#</span><i>◆</i><span class="dup">AR / VR</span><i>◆</i>
+        <span class="dup">WebGL · ThreeJS</span><i>◆</i><span class="dup">HD Product Rendering</span><i>◆</i><span class="dup">Animation</span><i>◆</i>
+        <span class="dup">Procedural</span><i>◆</i><span class="dup">3D Printing</span><i>◆</i>
+      </div>
+    </div>
+
+    <!-- ======================= ABOUT ======================= -->
+    <section class="section about" id="about">
+      <div class="about-grid">
+        <div class="about-copy">
+          <p class="section-kicker reveal">About</p>
+          <h2 class="section-title reveal">Digital Media Artist & Technologist<br /><span>across 2D, 3D and Game Development</span></h2>
+          <p class="reveal">
+            Freelance Creative Digital Artist and Technologist | 3D Generalist | Unity Game Developer 
+            with over a decade of 3D specialization.
+            Comfortable across the whole pipeline, sculpting, retopology, UDIMs and texture baking,
+            game-ready optimization, rigging and animation, then bringing it to life in Unity with C#,
+            LOD systems, particles and post-processing. Equally at home painting concept art and NPR
+            textures in Krita, Rebelle and Corel Painter.
+          </p>
+          <p class="reveal">
+            Flexible, affordable rates tailored to small studios, indie teams and one-off prototypes.
+          </p>
+
+          <div class="facts reveal">
+            <div class="fact"><span class="fact-num">14+</span><span class="fact-label">years in 3D</span></div>
+            <div class="fact"><span class="fact-num">2</span><span class="fact-label">released games</span></div>
+            <div class="fact"><span class="fact-num">EN · FR</span><span class="fact-label">bilingual</span></div>
+            <div class="fact"><span class="fact-num">2026</span><span class="fact-label">Unity Asset Store</span></div>
+          </div>
+
+          <ul class="skill-chips reveal">
+            <li>Low &amp; High Poly</li><li>Hard Surface</li><li>UDIM / Texture Baking</li>
+            <li>Retopology &amp; LOD</li><li>Rigging &amp; Animation</li><li>Unity · C#</li>
+            <li>AR / VR</li><li>WebGL · ThreeJS</li><li>NPR Painting</li><li>3D Printing</li>
+          </ul>
+
+          <div class="about-links reveal">
+            <a class="btn btn-primary" href="#work">Browse the portfolio</a>
+            <a class="ext-link" href="https://assetstore.unity.com/publishers/1427" target="_blank" rel="noopener">Unity Asset Store ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= WORK ======================= -->
+    <section class="section work" id="work">
+      <div class="section-head reveal">
+        <div>
+          <p class="section-kicker">Portfolio</p>
+          <h2 class="section-title">The Work</h2>
+          <p class="section-sub">2D artwork and 3D artwork, organized by shared categories. Pick a discipline, pick a category, open a project.</p>
+        </div>
+        <div class="work-count" id="workCount" aria-live="polite"></div>
+      </div>
+
+      <div class="work-controls reveal">
+        <div class="seg" role="tablist" aria-label="Media type">
+          <button class="seg-btn" data-media="all" role="tab" aria-selected="false">All</button>
+          <button class="seg-btn" data-media="2d" role="tab" aria-selected="false">2D Art</button>
+          <button class="seg-btn active" data-media="3d" role="tab" aria-selected="true">3D Art</button>
+        </div>
+        <div class="chips" id="catChips" role="list"></div>
+      </div>
+
+      <div class="work-grid" id="workGrid"></div>
+      <p class="empty" id="emptyState" hidden>No projects in this combination yet — try another category.</p>
+    </section>
+
+    <!-- ======================= MOTION ======================= -->
+    <section class="section motion" id="motion">
+      <div class="section-head reveal">
+        <div>
+          <p class="section-kicker">Motion &amp; Showreels</p>
+          <h2 class="section-title">In Motion</h2>
+          <p class="section-sub">Turntable and process clips of the vehicles and creatures above — play the local clips directly, or open the YouTube showreels.</p>
+        </div>
+      </div>
+
+      <div class="video-duo">
+        <figure class="video-card reveal">
+          <div class="video-frame">
+            <video id="vidAF2" controls playsinline preload="metadata"
+              src="3D Art/3D_Vehicles_Hard Surface/AA_AF2_3D Models_Agro_Vehicles/AF2_vehicles.mp4"
+              poster="3D Art/3D_Vehicles_Hard Surface/AA_AF2_3D Models_Agro_Vehicles/T7_genesis.PNG">
+              Your browser does not support embedded video.
+            </video>
+          </div>
+          <figcaption>
+            <span class="vc-badge">MP4 · Local Clip</span>
+            <h3>AF2 Agro Vehicles</h3>
+            <p>Branded agricultural vehicle recreations for The Armoured Pug — clay, wireframe and Unity bakes.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="video-card reveal">
+          <div class="video-frame">
+            <video id="vidGoofy" controls playsinline preload="metadata"
+              src="3D Art/3D_Vehicles_Hard Surface/Disney_Mobile games/The_Goofy_Train_asset_1.mp4"
+              poster="3D Art/3D_Vehicles_Hard Surface/Disney_Mobile games/GoofyTrain_closeUp.jpg">
+              Your browser does not support embedded video.
+            </video>
+          </div>
+          <figcaption>
+            <span class="vc-badge">MP4 · Local Clip</span>
+            <h3>Goofy Train — Disney Mobile</h3>
+            <p>Disney mobile-game vehicle asset, from concept to textured game-ready model.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="yt-grid reveal" id="ytGrid"></div>
+    </section>
+
+    <!-- ======================= EXPERIENCE ======================= -->
+    <section class="section experience" id="experience">
+      <div class="section-head reveal">
+        <div>
+          <p class="section-kicker">Career</p>
+          <h2 class="section-title">Experience Timeline</h2>
+          <p class="section-sub">Two decades of studios, startups, classrooms and freelance runs — from golf simulators to Disney AR.</p>
+        </div>
+      </div>
+
+      <ol class="timeline collapsed">
+        <li class="tl-item reveal">
+          <div class="tl-node"><span>2011→now</span></div>
+          <article class="tl-card">
+            <div class="tl-top">
+              <h3>Pascal Chaumette Studio</h3>
+              <span class="tl-current">CURRENT</span>
+            </div>
+            <p class="tl-role">Digital Media Artist · 3D Generalist · Unity Developer</p>
+            <p class="tl-period">Nov 2011 — Present · Toronto, Canada</p>
+            <p class="tl-desc">Freelance 3D specialization spanning AR/VR, AA mobile games, WebGL/ThreeJS, Unity-based interactive installations, HD product rendering and marketing content — delivered for The Armoured Pug, Disney, Neo-Pangea and RHODDY. Contributed to released titles including <em>Star Wars: Resistance Racer</em> and MarineVerse’s <em>VR Regatta</em>.</p>
+            <ul class="tl-tags"><li>Blender</li><li>Unity · C#</li><li>ZBrush</li><li>AR/VR</li><li>WebGL</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal">
+          <div class="tl-node"><span>2025</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>The Armoured Pug</h3></div>
+            <p class="tl-role">3D Artist · Unity Asset Onboarding</p>
+            <p class="tl-period">Dec 2025 — Apr 2026 · Remote</p>
+            <p class="tl-desc">Game-ready recreations of branded agricultural vehicles and equipment in Blender — 3 LOD levels, material allocation, naming, hierarchy, rigging and vertex-color distribution — plus prefab setup, playtesting and pull-request review in Unity.</p>
+            <ul class="tl-tags"><li>Blender</li><li>Unity</li><li>LOD Systems</li><li>Hard Surface</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal">
+          <div class="tl-node"><span>2025</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>NeoPangea</h3></div>
+            <p class="tl-role">3D Artist · Generalist · Animator</p>
+            <p class="tl-period">Aug 2025 — Jan 2026 · Remote</p>
+            <p class="tl-desc">3D modeling and animation for interactive presentations and apps for commercial clients and academic institutions.</p>
+            <ul class="tl-tags"><li>Blender</li><li>Animation</li><li>Interactive</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal">
+          <div class="tl-node"><span>2018–25</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>NeoPangea</h3></div>
+            <p class="tl-role">3D Artist · Generalist · Animation · Game Development</p>
+            <p class="tl-period">Nov 2018 — May 2025 · United States · Full-time / Remote</p>
+            <p class="tl-desc">Unity AR game development for Android / iOS / PC; low- and high-poly modeling, UVs and texturing of vehicles, characters and environments; UDIM and high-poly detail baking in Maya, Substance Painter and ZBrush; C# asset implementation in Unity 2019; WebGL content with ThreeJS / BabylonJS — including projects for high-profile clients such as Disney.</p>
+            <ul class="tl-tags"><li>Unity</li><li>C#</li><li>AR</li><li>ThreeJS</li><li>Disney</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal">
+          <div class="tl-node"><span>2017–19</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>MarineVerse</h3></div>
+            <p class="tl-role">Technical Artist · Unity VR · Environment Artist</p>
+            <p class="tl-period">Jun 2017 — Oct 2019 · Greater Sydney, AU</p>
+            <p class="tl-desc">Built open-world sailing environments for <em>VR Regatta — The Sailing Game</em>, developed and optimized for HTC Vive and Oculus.</p>
+            <ul class="tl-tags"><li>Unity</li><li>VR</li><li>Environments</li><li>Optimization</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-toggle-item">
+          <button class="tl-toggle" id="tlToggle" type="button" aria-expanded="false">Show all 7 more roles &#9662;</button>
+        </li>
+
+        <li class="tl-item reveal tl-more">
+          <div class="tl-node"><span>2018</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>RHODDY Marketing Group</h3></div>
+            <p class="tl-role">Unity 3D Developer</p>
+            <p class="tl-period">Aug 2018 — Jan 2019 · Toronto, Canada</p>
+            <p class="tl-desc">Interactive marketing content in Unity 3D with Intel RealSense depth cameras and the Nuitrack plugin; character rigging and animation in 3ds Max; environment design.</p>
+            <ul class="tl-tags"><li>Unity</li><li>RealSense</li><li>Rigging</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal tl-more">
+          <div class="tl-node"><span>2018</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>LumièreVR</h3></div>
+            <p class="tl-role">Unity Technical Artist · Consulting</p>
+            <p class="tl-period">Jul 2018 — Jan 2019 · Greater Toronto, Canada</p>
+            <p class="tl-desc">AR/VR environments for the Moodpod product; consulting on Unity 2017.4 and AR/VR development practices; 3D modeling, environment design and lighting; optimization scripts and add-ons.</p>
+            <ul class="tl-tags"><li>Unity</li><li>AR/VR</li><li>Optimization</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal tl-more">
+          <div class="tl-node"><span>2017–18</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>Relish Interactive</h3></div>
+            <p class="tl-role">Technical Artist · 3D Artist</p>
+            <p class="tl-period">Nov 2017 — Mar 2018 · Toronto, Canada</p>
+            <p class="tl-desc">3D assets and visual augmentations for mobile platforms on Unity 2017.</p>
+            <ul class="tl-tags"><li>Unity</li><li>Mobile</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal tl-more">
+          <div class="tl-node"><span>2018</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>Cineplex Digital Media</h3></div>
+            <p class="tl-role">Unity 3D Developer</p>
+            <p class="tl-period">Mar 2018 — Apr 2018 · London, Canada</p>
+            <p class="tl-desc">C# scripting for 2-player implementation, gameplay mechanics, UI and level design, alongside supporting 3D modeling.</p>
+            <ul class="tl-tags"><li>Unity</li><li>C#</li><li>UI</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal tl-more">
+          <div class="tl-node"><span>2013–17</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>CDI Toronto</h3></div>
+            <p class="tl-role">Game Development &amp; Design Instructor · Lab Supervision</p>
+            <p class="tl-period">May 2013 — Jul 2017 · Toronto, Canada</p>
+            <p class="tl-desc">Instructing students and demonstrating workflows with the Autodesk Entertainment Creation Suite (3ds Max / Mudbox), Adobe Photoshop and Unity 3D (C#).</p>
+            <ul class="tl-tags"><li>Teaching</li><li>3ds Max</li><li>Unity</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal tl-more">
+          <div class="tl-node"><span>2010–11</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>Ganz</h3></div>
+            <p class="tl-role">2D / 3D Artist</p>
+            <p class="tl-period">Jan 2010 — Nov 2011 · Studio</p>
+            <p class="tl-desc">Concept art, 3D modeling, texturing and implementation prep for Flash and Unity on various games, including Webkinz.</p>
+            <ul class="tl-tags"><li>Flash</li><li>Unity</li><li>Concept Art</li></ul>
+          </article>
+        </li>
+
+        <li class="tl-item reveal tl-more">
+          <div class="tl-node"><span>2006–09</span></div>
+          <article class="tl-card">
+            <div class="tl-top"><h3>Interactive Sports Technologies</h3></div>
+            <p class="tl-role">2D / 3D Artist</p>
+            <p class="tl-period">Jun 2006 — Dec 2009 · Studio</p>
+            <p class="tl-desc">High-definition picture creation for <em>High Definition Golf</em>; 3D construction of golf courses in Blender; mini-games featured in the simulator.</p>
+            <ul class="tl-tags"><li>Blender</li><li>Photoshop</li><li>Simulation</li></ul>
+          </article>
+        </li>
+      </ol>
+
+      <p class="tl-education reveal">
+        <span class="tl-edu-icon" aria-hidden="true">&#9998;</span>
+        <strong>Education</strong> — International Academy of Design (Toronto) · Digital Media &amp; Design, Web Design, 2D/3D Art, Digital Illustration, Game Design · 1998–1999
+      </p>
+    </section>
+
+    <!-- ======================= TOOLBOX ======================= -->
+    <section class="section toolbox" id="toolbox">
+      <div class="section-head reveal">
+        <div>
+          <p class="section-kicker">Toolbox</p>
+          <h2 class="section-title">Tools of the Trade</h2>
+          <p class="section-sub">The daily drivers behind the work.</p>
+        </div>
+      </div>
+
+      <div class="toolbox-groups">
+        <div class="tb-group reveal">
+          <h3>2D &amp; Painting</h3>
+          <div class="tb-logos">
+            <figure class="tb-logo"><img src="logos/2D logo/Adobe-Photoshop-Logo-2013-2015.png" alt="Adobe Photoshop" loading="lazy" /><figcaption>Photoshop</figcaption></figure>
+            <figure class="tb-logo"><img src="logos/2D logo/5-krita.png" alt="Krita" loading="lazy" /><figcaption>Krita</figcaption></figure>
+            <figure class="tb-logo"><img src="logos/2D logo/rebelle6.PNG" alt="Rebelle 6" loading="lazy" /><figcaption>Rebelle 6</figcaption></figure>
+            <figure class="tb-logo"><img src="logos/2D logo/32-106-874-01.webp" alt="Corel Painter" loading="lazy" /><figcaption>Painter</figcaption></figure>
+          </div>
+        </div>
+        <div class="tb-group reveal">
+          <h3>3D &amp; Sculpting</h3>
+          <div class="tb-logos">
+            <figure class="tb-logo"><img src="logos/3D Logo/Blender_Logol.png" alt="Blender" loading="lazy" /><figcaption>Blender</figcaption></figure>
+            <figure class="tb-logo"><img src="logos/3D Logo/Zbrush_logo.png" alt="ZBrush" loading="lazy" /><figcaption>ZBrush</figcaption></figure>
+            <figure class="tb-logo"><img src="logos/3D Logo/SubstancePainter_logo.png" alt="Substance Painter" loading="lazy" /><figcaption>Substance</figcaption></figure>
+            <figure class="tb-logo"><img src="logos/3D Logo/3dsMax_logo.png" alt="3ds Max" loading="lazy" /><figcaption>3ds Max</figcaption></figure>
+            <figure class="tb-logo"><img src="logos/3D Logo/instaMAT.PNG" alt="InstaMAT" loading="lazy" /><figcaption>InstaMAT</figcaption></figure>
+          </div>
+        </div>
+        <div class="tb-group reveal">
+          <h3>Engine &amp; AI</h3>
+          <div class="tb-logos">
+            <figure class="tb-logo"><img src="logos/Game Engine_logo/unity-logo.png" alt="Unity" loading="lazy" /><figcaption>Unity</figcaption></figure>
+            <figure class="tb-logo"><img src="logos/Creative Technologie_logo/comfy.PNG" alt="ComfyUI" loading="lazy" /><figcaption>ComfyUI</figcaption></figure>
+          </div>
+        </div>
+      </div>
+
+      <ul class="skill-chips skill-chips-wide reveal">
+        <li>Modular &amp; Procedural</li><li>UDIMs</li><li>Texture Baking</li><li>Material Authoring</li>
+        <li>Mesh Cleanup</li><li>3D Printing</li><li>Particles / VFX / PostFX</li><li>Lighting</li>
+        <li>Prefab &amp; LOD Systems</li><li>Gameplay Prototyping</li><li>Git / Plastic Pipelines</li><li>Video Editing</li>
+        <li>Motion Graphics</li><li>Product Renders</li>
+      </ul>
+    </section>
+
+    <!-- ======================= UNITY ASSET PACKS ======================= -->
+    <section class="section assets" id="assets">
+      <div class="section-head reveal">
+        <div>
+          <p class="section-kicker">For Sale</p>
+          <h2 class="section-title">Unity Asset Packs</h2>
+          <p class="section-sub">Production-ready packs published on the Unity Asset Store.</p>
+        </div>
+      </div>
+
+      <div class="asset-duo">
+        <article class="asset-card reveal">
+          <div class="asset-media"><img src="Unity Asset Packs/PC_Spider_2026/phc_spider_logo2.PNG" alt="PC Spider 2026 asset pack" loading="lazy" /></div>
+          <div class="asset-body">
+            <h3>PC Spider 2026</h3>
+            <p>A fully rigged, game-ready spider creature — sculpted, textured and optimized for Unity, built on the same pipeline as the hero creature above.</p>
+            <div class="asset-actions">
+              <button class="btn btn-ghost btn-yt" data-yt="dykKzNhgNuw">&#9654; Watch showreel</button>
+              <a class="btn btn-primary" href="https://assetstore.unity.com/publishers/1427" target="_blank" rel="noopener">Asset Store ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="asset-card reveal">
+          <div class="asset-media"><img src="Unity Asset Packs/RockPack_2026/mainpromo_image4.PNG" alt="RockPack 2026 asset pack" loading="lazy" /></div>
+          <div class="asset-body">
+            <h3>RockPack 2026</h3>
+            <p>Modular rock and terrain set with clean topology and efficient UVs — plug it straight into any environment build.</p>
+            <div class="asset-actions">
+              <button class="btn btn-ghost btn-yt" data-yt="4RNu2MNoS4U">&#9654; Watch showreel</button>
+              <a class="btn btn-primary" href="https://assetstore.unity.com/publishers/1427" target="_blank" rel="noopener">Asset Store ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================= CONTACT ======================= -->
+    <section class="section contact" id="contact">
+      <div class="contact-card reveal">
+        <div class="contact-glow" aria-hidden="true"></div>
+        <p class="section-kicker">Contact</p>
+        <h2 class="section-title contact-title">Let’s build something<br /></h2>
+        <p class="contact-sub">Available for freelance 3D, Unity development and marketing content. Flexible rates for studios, indie teams and prototypes.</p>
+        <div class="contact-photo">
+          <div class="photo-frame">
+            <img src="Pascal Chaumette_image.png" alt="Portrait of Pascal Chaumette" loading="lazy" />
+            <span class="photo-badge">Pascal Chaumette</span>
+          </div>
+        </div>
+        <a class="btn btn-primary btn-big" href="mailto:quantum3d@gmail.com">quantum3d@gmail.com</a>
+        <div class="contact-grid">
+          <a href="https://www.linkedin.com/in/pascal-c-6790761a" target="_blank" rel="noopener" class="contact-link"><span>in</span>LinkedIn</a>
+          <a href="https://www.youtube.com/@paka3D/" target="_blank" rel="noopener" class="contact-link"><span>YT</span>YouTube</a>
+          <a href="https://sketchfab.com/pakagames" target="_blank" rel="noopener" class="contact-link"><span>SF</span>Sketchfab</a>
+          <a href="https://www.deviantart.com/paka3d/" target="_blank" rel="noopener" class="contact-link"><span>dA</span>DeviantArt</a>
+          <a href="https://www.behance.net/pakagames/" target="_blank" rel="noopener" class="contact-link"><span>Bé</span>Behance</a>
+          <a href="https://www.artstation.com/paka3d" target="_blank" rel="noopener" class="contact-link"><span>AS</span>ArtStation</a>
+          <a href="https://assetstore.unity.com/publishers/1427" target="_blank" rel="noopener" class="contact-link"><span>U</span>Asset Store</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Pascal Chaumette · Digital Media Artist · Toronto, Canada</p>
+    <p class="footer-sub">Blender · Unity · Krita · ZBrush — built with a decade of pixels and polygons.</p>
+  </footer>
+
+  <!-- ======================= LIGHTBOX ======================= -->
+  <div class="lightbox" id="lightbox" hidden>
+    <div class="lb-backdrop" data-lb-close></div>
+    <div class="lb-panel" role="dialog" aria-modal="true" aria-label="Project detail">
+      <header class="lb-head">
+        <div>
+          <p class="lb-series" id="lbSeries"></p>
+          <h3 class="lb-title" id="lbTitle"></h3>
+        </div>
+        <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+      </header>
+      <div class="lb-body" id="lbBody"></div>
+    </div>
+  </div>
+
+  <!-- ======================= ZOOM ======================= -->
+  <div class="zoom" id="zoom" hidden>
+    <button class="zoom-close" id="zoomClose" aria-label="Close image">✕</button>
+    <img id="zoomImg" alt="" />
+  </div>
+
+  <!-- ======================= 3D HERO (three.js, inline module for file:// safety) ======================= -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module">
+    const $ = (id) => document.getElementById(id);
+    const canvas = $('hero3d');
+    const loader = $('heroLoader');
+    const chip = $('animChip');
+    const animName = $('animName');
+    const errBox = $('heroError');
+    let model = null; // declared early so fail() can check it even if init throws before setup
+    const fail = () => {
+      if (model) return; // the creature is on screen — never show the error over a loaded model
+      if (loader) loader.classList.add('hide');
+      errBox.hidden = false;
+    };
+
+    try {
+      const THREE = await import('three');
+      const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+      const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+      const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.12;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+      // Placeholder framing (before the model loads); fitCamera() below recomputes
+      // a close, low, slightly-upward angle that frames the actual creature.
+      camera.position.set(0.25, 0.47, 2.2);
+
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.9).texture;
+
+      scene.add(new THREE.HemisphereLight(0x9db8e8, 0x1a120a, 0.55));
+      const key = new THREE.DirectionalLight(0xffd7ae, 1.5); key.position.set(4, 5, 3); scene.add(key);
+      const fill = new THREE.DirectionalLight(0x4d8fe0, 0.65); fill.position.set(-5, 2, -2); scene.add(fill);
+      const rim = new THREE.SpotLight(0xff7a2f, 30, 30, Math.PI / 5, 0.5, 1.4);
+      rim.position.set(-2.5, 3.2, -5); scene.add(rim); scene.add(rim.target);
+
+      const controls = new OrbitControls(camera, canvas);
+      controls.enableDamping = true; controls.dampingFactor = 0.08;
+      controls.enablePan = false;
+      controls.minDistance = 1.6; controls.maxDistance = 8;
+      controls.minPolarAngle = Math.PI * 0.18; controls.maxPolarAngle = Math.PI * 0.55; // stay above the ground line
+      controls.autoRotate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      controls.autoRotateSpeed = 0.45;
+
+      let idleTimer = null;
+      const poke = () => {
+        controls.autoRotate = false;
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => { controls.autoRotate = true; }, 4500);
+      };
+      controls.addEventListener('start', poke);
+
+      let mixer = null, actions = [], animIndex = -1;
+      const modelHome = new THREE.Vector3(); // ground-placed offset, kept stable across resizes
+      let frameTargetY = 0.4;               // camera aim: the model's true vertical center
+      let modelHalfH = 0.6, modelHalfW = 0.5; // half-extents of the placed model (for camera fit)
+
+      // Frame the camera so the creature fills the stage on any canvas aspect
+      const fitCamera = () => {
+        const vHalf = Math.tan(THREE.MathUtils.degToRad(21)); // 42° vertical FOV / 2
+        const aspect = Math.max((canvas.clientWidth || 1) / (canvas.clientHeight || 1), 0.5);
+        const margin = 1.35; // breathing room around the creature
+        const dist = THREE.MathUtils.clamp(
+          Math.max((modelHalfH / vHalf) * margin, (modelHalfW / (vHalf * aspect)) * margin),
+          1.7, 7
+        );
+        camera.position.set(0.25, frameTargetY - 0.12, dist); // low angle: looks up at the creature
+        camera.lookAt(controls.target);
+      };
+
+      const setAnim = (i) => {
+        if (!actions.length) return;
+        animIndex = ((i % actions.length) + actions.length) % actions.length;
+        actions.forEach((a, j) => {
+          if (j === animIndex) { a.reset(); a.fadeIn(0.35).play(); }
+          else { a.fadeOut(0.35); }
+        });
+        animName.textContent = actions[animIndex].clip.name || `Take ${animIndex + 1}`;
+      };
+
+      const layout = () => {
+        const w = canvas.clientWidth || window.innerWidth;
+        const h = canvas.clientHeight || window.innerHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        if (model) model.position.copy(modelHome);
+        controls.target.set(0, frameTargetY, 0);
+      };
+
+      new GLTFLoader().load(
+        '3D Art/3D_Characters/Creatures/The Creature/creatures_anims.glb',
+        (gltf) => {
+          model = gltf.scene;
+          const box = new THREE.Box3().setFromObject(model);
+          const size = box.getSize(new THREE.Vector3());
+          const scale = (0.95 * 1.25) / Math.max(size.y, 0.001); // 25% larger than the previous framing
+          model.scale.setScalar(scale);
+          box.setFromObject(model);
+          const c = box.getCenter(new THREE.Vector3());
+          modelHome.set(-c.x, -box.min.y, -c.z);
+          model.position.copy(modelHome);
+          box.setFromObject(model);
+          modelHalfH = (box.max.y - box.min.y) / 2;
+          modelHalfW = (box.max.x - box.min.x) / 2;
+          frameTargetY = (box.min.y + box.max.y) / 2;
+          model.traverse((o) => { if (o.isMesh && o.material) o.material.envMapIntensity = 0.85; });
+          scene.add(model);
+          errBox.hidden = true; // model is in — clear any stale error state
+
+          mixer = new THREE.AnimationMixer(model);
+          mixer.timeScale = 0.35; // “slow mo” playback, slowed a little further
+          // Only the takes the artist wants on the hero: Searching + Death (fallback to all if renamed)
+          const WANTED_CLIPS = ['Searching_1', 'Death_anim_2'];
+          let clips = gltf.animations.filter((clip) => WANTED_CLIPS.includes(clip.name));
+          if (!clips.length) clips = gltf.animations;
+          actions = clips.map((clip) => mixer.clipAction(clip));
+          layout();
+          fitCamera();
+          if (actions.length) {
+            setAnim(0);
+            chip.hidden = false;
+          } else {
+            animName.textContent = 'Static';
+            chip.hidden = false;
+          }
+          loader.classList.add('hide');
+        },
+        (xhr) => {
+          if (xhr.total) {
+            const p = loader.querySelector('p');
+            if (p) p.textContent = `Summoning the creature… ${Math.round((xhr.loaded / xhr.total) * 100)}%`;
+          }
+        },
+        (err) => { console.error('GLB load failed:', err); fail(); }
+      );
+
+      // tap (not drag) cycles animations
+      let downPos = null, downTime = 0;
+      canvas.addEventListener('pointerdown', (e) => { downPos = [e.clientX, e.clientY]; downTime = performance.now(); });
+      canvas.addEventListener('pointerup', (e) => {
+        if (!downPos) return;
+        const dx = e.clientX - downPos[0], dy = e.clientY - downPos[1];
+        const moved = Math.hypot(dx, dy);
+        downPos = null;
+        if (moved < 9 && performance.now() - downTime < 420 && actions.length) setAnim(animIndex + 1);
+      });
+      canvas.addEventListener('wheel', poke, { passive: true });
+
+      window.addEventListener('resize', layout);
+      layout();
+
+      const clock = new THREE.Clock();
+      (function tick() {
+        requestAnimationFrame(tick);
+        const dt = clock.getDelta();
+        if (mixer) mixer.update(dt);
+        controls.update();
+        renderer.render(scene, camera);
+      })();
+    } catch (err) {
+      console.error('3D hero init failed:', err);
+      fail();
+    }
+  </script>
+
+  <script src="app.js?v=3"></script>
+</body>
+</html>
