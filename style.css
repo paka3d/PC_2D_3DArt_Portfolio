@@ -266,7 +266,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   filter: saturate(1.04) contrast(1.02);
 }
 .photo-badge {
-  position: absolute; z-index: 2; left: 22px; bottom: 22px;
+  display: inline-block; margin-top: 14px;
   font-size: 11.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
   color: #ffd9b8; background: rgba(11, 14, 20, 0.85); border: 1px solid rgba(255, 122, 47, 0.4);
   padding: 8px 14px; border-radius: 999px; backdrop-filter: blur(6px);
@@ -549,7 +549,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .contact-card > * { position: relative; }
 .contact-title { margin-bottom: 16px; }
 .contact-sub { color: var(--muted); max-width: 520px; margin: 0 auto 30px; font-size: 15.5px; }
-.contact-photo { display: flex; justify-content: center; margin: 0 0 32px; }
+.contact-photo { display: flex; flex-direction: column; align-items: center; margin: 0 0 32px; }
 .contact-photo .photo-frame { width: 220px; }
 .contact-grid {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 34px;
